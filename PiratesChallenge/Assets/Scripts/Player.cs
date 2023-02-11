@@ -3,7 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 public class Player : MonoBehaviour
 {
-    public float moveSpeed = 5f, rotationSpeed = 5f;
+    [Header("References")]
+    public GameObject bullet;
+    public Transform frontalGun;
+    public Transform[] sideGun = new Transform[6];
+    [Header("Modifiers")]
+    public float moveSpeed = 5f;
+    public float rotationSpeed = 5f;
     Rigidbody2D body;
     float rotate = 0;
     // Start is called before the first frame update
@@ -16,6 +22,17 @@ public class Player : MonoBehaviour
     void Update()
     {
         Moviment();
+        if (Input.GetButtonDown("Fire1"))
+        {
+            Instantiate(bullet, frontalGun.position, transform.rotation);
+        }
+        if (Input.GetButtonDown("Fire2"))
+        {
+            for (int i = 0; i < sideGun.Length; i++)
+            {
+                Instantiate(bullet, sideGun[i].position, sideGun[i].rotation);
+            }
+        }
     }
     void Moviment()
     {
