@@ -5,34 +5,29 @@ public class Player : MonoBehaviour
 {
     [Header("References")]
     public GameObject bullet;
-    public Transform frontalGun;
+    public Transform frontalGun, lifeBarPos;
     public Transform[] sideGun = new Transform[6];
     [Header("Modifiers")]
     public float moveSpeed = 5f;
-    public float rotationSpeed = 5f;
+    public float rotationSpeed = 5f, lifeMax = 10f;
     Rigidbody2D body;
-    float rotate = 0;
+    float rotate = 0, currentLife;
+    LifeBar lifeBar;
     // Start is called before the first frame update
     void Start()
     {
         body = GetComponent<Rigidbody2D>();
+        currentLife = lifeMax;
+        lifeBar = lifeBarPos.gameObject.GetComponent<LifeBar>();
+        lifeBar.UpdateBar(0, currentLife, lifeMax);
     }
 
     // Update is called once per frame
     void Update()
     {
         Moviment();
-        if (Input.GetButtonDown("Fire1"))
-        {
-            Instantiate(bullet, frontalGun.position, transform.rotation);
-        }
-        if (Input.GetButtonDown("Fire2"))
-        {
-            for (int i = 0; i < sideGun.Length; i++)
-            {
-                Instantiate(bullet, sideGun[i].position, sideGun[i].rotation);
-            }
-        }
+        Shoot();
+        lifeBarPos.position = transform.position;
     }
     void Moviment()
     {
@@ -49,5 +44,24 @@ public class Player : MonoBehaviour
         //Rotacionar o barco
         rotate += Input.GetAxis("Horizontal");
         body.rotation = (-rotate / 10) * rotationSpeed;
+    }
+    void Shoot()
+    {
+        if (Input.GetButtonDown("Fire1"))//Tiro Frontal
+        {
+            Instantiate(bullet, frontalGun.position, transform.rotation);
+        }
+        if (Input.GetButtonDown("Fire2"))//Tiro Lateral
+        {
+            for (int i = 0; i < sideGun.Length; i++)
+            {
+                Instantiate(bullet, sideGun[i].position, sideGun[i].rotation);
+            }
+        }
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        print("colidiu");
+        currentLife = lifeBar.UpdateBar(1,currentLife, lifeMax);
     }
 }
