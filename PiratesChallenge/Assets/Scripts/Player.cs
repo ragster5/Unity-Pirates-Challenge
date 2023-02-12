@@ -27,7 +27,7 @@ public class Player : MonoBehaviour
     {
         Moviment();
         Shoot();
-        lifeBarPos.position = transform.position;
+        lifeBarPos.position = transform.position;//Posicionamento da barra de vida
     }
     void Moviment()
     {

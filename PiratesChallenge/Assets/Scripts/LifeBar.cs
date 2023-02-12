@@ -6,7 +6,7 @@ public class LifeBar : MonoBehaviour
 {
     [Header("References")]
     public Transform bar;
-    float barMaxSize, previousLife, currentLife;
+    float barMaxSize;
     // Start is called before the first frame update
     void Start()
     {
