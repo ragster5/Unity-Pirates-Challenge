@@ -17,6 +17,10 @@ public class LifeBar : MonoBehaviour
     public float UpdateBar(float damage, float life, float maxLife)
     {
         life -= damage;
+        if(life < 0)
+        {
+            life = 0;
+        }
         float size = life * barMaxSize / maxLife;
         bar.localScale = new Vector2(size, bar.localScale.y);
         return life;

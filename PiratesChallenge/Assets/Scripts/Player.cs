@@ -19,7 +19,7 @@ public class Player : MonoBehaviour
         body = GetComponent<Rigidbody2D>();
         currentLife = lifeMax;
         lifeBar = lifeBarPos.gameObject.GetComponent<LifeBar>();
-        lifeBar.UpdateBar(0, currentLife, lifeMax);
+        currentLife = lifeBar.UpdateBar(0, currentLife, lifeMax);
     }
 
     // Update is called once per frame
