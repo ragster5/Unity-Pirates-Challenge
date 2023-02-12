@@ -5,8 +5,8 @@ using UnityEngine;
 public class LifeBar : MonoBehaviour
 {
     [Header("References")]
-    public SpriteRenderer bar;
-    float barMaxSize;
+    public Transform bar;
+    float barMaxSize, previousLife, currentLife;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,8 +18,7 @@ public class LifeBar : MonoBehaviour
     {
         life -= damage;
         float size = life * barMaxSize / maxLife;
-        transform.localScale = new Vector2(transform.localScale.x, size);
+        bar.localScale = new Vector2(size, bar.localScale.y);
         return life;
-        print("rolou");
     }
 }

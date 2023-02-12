@@ -61,7 +61,6 @@ public class Player : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        print("colidiu");
-        currentLife = lifeBar.UpdateBar(1,currentLife, lifeMax);
+        currentLife = lifeBar.UpdateBar(collision.GetComponent<Bullet>().damage,currentLife, lifeMax);
     }
 }
