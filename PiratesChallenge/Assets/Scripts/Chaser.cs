@@ -21,8 +21,15 @@ public class Chaser : Enemy
                 Chase();
                 break;
             case IAStates.Obstacle:
+                Obstacle();
                 break;
             case IAStates.Shoot:
+                break;
+            case IAStates.Idle:
+                Vision();
+                break;
+            case IAStates.Moving:
+                Moving();
                 break;
             default:
                 break;

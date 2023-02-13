@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8008516812580048406}
   - component: {fileID: 8008516812580048404}
   - component: {fileID: 8617594625297269187}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ChaserCore
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -125,8 +125,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lifeMax: 3
-  speed: 5
+  speed: 2
   lifeBar: {fileID: 8617594624785582809}
+  player: {fileID: 0}
 --- !u!1 &8617594624750648214
 GameObject:
   m_ObjectHideFlags: 0
@@ -136,7 +137,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8617594624750648215}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chaser
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -170,7 +171,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8617594624785582808}
   - component: {fileID: 8617594624785582809}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: LifeBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -217,7 +218,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8617594624874284601}
   - component: {fileID: 8617594624874284602}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Life
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -301,7 +302,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8617594625099414494}
   - component: {fileID: 8617594625099414495}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: BG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
