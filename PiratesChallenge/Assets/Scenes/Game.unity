@@ -204,7 +204,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!61 &129674236
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -418,7 +418,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: e4f38bf944256c64eb152759b5164818, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -665,7 +665,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: d41b2f774787b4f45b7dca4964d86736, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1357,10 +1357,14 @@ MonoBehaviour:
   - {fileID: 10052074}
   - {fileID: 1372842225}
   - {fileID: 1466597792}
+  spriteShip: {fileID: 668149695}
   moveSpeed: 5
   rotationSpeed: 5
   lifeMax: 10
-  shipCondition: []
+  shipCondition:
+  - {fileID: 21300000, guid: d96dadde1394d034799c20c597f1b20c, type: 3}
+  - {fileID: 21300000, guid: a822536f2ba4c63409bdc1004b44f948, type: 3}
+  - {fileID: 21300000, guid: 1964ad3583aabf141902176c3e137f04, type: 3}
   flagCondition: []
 --- !u!50 &1096881843
 Rigidbody2D:
@@ -1763,7 +1767,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 1a58b6f60b2a06e43811ede658ecadc8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
