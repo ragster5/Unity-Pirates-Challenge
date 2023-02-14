@@ -7,7 +7,12 @@ public class Title : MonoBehaviour
 {
     public TextMeshProUGUI matchDurationTxt, spawnTimeTxt;
     int matchDuration = 2, spawnTime = 5;
-   public void PlayBtn()
+    private void Start()
+    {
+        PlayerPrefs.SetInt("MatchDuration", matchDuration);
+        PlayerPrefs.SetInt("SpawnTime", spawnTime);
+    }
+    public void PlayBtn()
     {
         SceneManager.LoadScene("Game");
     }

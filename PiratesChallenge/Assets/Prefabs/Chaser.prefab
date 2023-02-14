@@ -128,6 +128,7 @@ MonoBehaviour:
   speed: 2
   lifeBar: {fileID: 8617594624785582809}
   player: {fileID: 0}
+  explosion: {fileID: 8559026342953775602, guid: 10ca11219b317b746a681af1c63d9bbc, type: 3}
 --- !u!1 &8617594624750648214
 GameObject:
   m_ObjectHideFlags: 0

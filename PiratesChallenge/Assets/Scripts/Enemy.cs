@@ -9,16 +9,21 @@ public abstract class Enemy : MonoBehaviour
 {
     public float lifeMax, speed;
     protected float currentLife;
+
+    [Header("References")]
     public LifeBar lifeBar;
     public Transform player;
+    public GameObject explosion;
     protected IAStates iaState = IAStates.Idle;
     Vector2 target;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        Instantiate(explosion, collision.transform.position, collision.transform.rotation);
         currentLife = lifeBar.UpdateBar(collision.GetComponent<Bullet>().damage, currentLife, lifeMax);
         if(currentLife <= 0)
         {
+            Instantiate(explosion, transform.position, transform.rotation);
             Destroy(transform.parent.gameObject);
         }
     }

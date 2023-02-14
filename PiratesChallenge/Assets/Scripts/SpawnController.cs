@@ -10,7 +10,13 @@ public class SpawnController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        timer = PlayerPrefs.GetFloat("SpawnTime");
+        if (PlayerPrefs.HasKey("SpawnTime"))
+        {
+            timer = PlayerPrefs.GetInt("SpawnTime");
+        } else
+        {
+            timer = 3;
+        }
         spawns = GetComponentsInChildren<Spawn>();
         InvokeRepeating("Spawn", 0, timer);
     }

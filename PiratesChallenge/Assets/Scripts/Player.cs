@@ -5,6 +5,7 @@ public class Player : MonoBehaviour
 {
     [Header("References")]
     public GameObject bullet;
+    public GameObject explosion;
     public Transform frontalGun, lifeBarPos;
     public Transform[] sideGun = new Transform[6];
     [Header("Modifiers")]
@@ -16,6 +17,8 @@ public class Player : MonoBehaviour
     [Header("Sprites")]
     public Sprite[] shipCondition;
     public Sprite[] flagCondition;
+
+    //]
     // Start is called before the first frame update
     void Start()
     {
@@ -62,8 +65,13 @@ public class Player : MonoBehaviour
             }
         }
     }
+    void SpriteController()
+    {
+
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         currentLife = lifeBar.UpdateBar(collision.GetComponent<Bullet>().damage,currentLife, lifeMax);
+        Instantiate(explosion, collision.transform.position, collision.transform.rotation);
     }
 }
