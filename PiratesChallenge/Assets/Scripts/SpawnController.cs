@@ -6,11 +6,13 @@ public class SpawnController : MonoBehaviour
 {
     public GameObject[] enemy;
     Spawn[] spawns = new Spawn[4];
+    float timer;
     // Start is called before the first frame update
     void Start()
     {
+        timer = PlayerPrefs.GetFloat("SpawnTime");
         spawns = GetComponentsInChildren<Spawn>();
-        InvokeRepeating("Spawn", 0, 2);
+        InvokeRepeating("Spawn", 0, timer);
     }
     void Spawn()
     {

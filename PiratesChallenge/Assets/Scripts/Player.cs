@@ -13,6 +13,9 @@ public class Player : MonoBehaviour
     Rigidbody2D body;
     float rotate = 0, currentLife;
     LifeBar lifeBar;
+    [Header("Sprites")]
+    public Sprite[] shipCondition;
+    public Sprite[] flagCondition;
     // Start is called before the first frame update
     void Start()
     {
