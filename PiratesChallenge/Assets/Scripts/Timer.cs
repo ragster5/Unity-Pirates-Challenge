@@ -11,6 +11,8 @@ public class Timer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        seconds = 00;
+        secondsBase = 00;
         if (PlayerPrefs.HasKey("MatchDuration"))
         {
             minutes = PlayerPrefs.GetInt("MatchDuration");
@@ -26,24 +28,27 @@ public class Timer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        secondsBase -= Time.deltaTime;
-        seconds = (int)secondsBase;
-        if (seconds == 00)
+        if (GameController.gamePhase.Equals(GamePhases.Game))
         {
-            minutes--;
-            secondsBase = 59;
-            seconds = 59;
-        }
-        if (seconds >= 10)
-        {
-            timerTxt.text = "0" + minutes + ":" + seconds;
-        }
-        else
-        {
-            timerTxt.text = "0" + minutes + ":0" + seconds;
-            if(minutes == 0 && seconds == 0)
+            secondsBase -= Time.deltaTime;
+            seconds = (int)secondsBase;
+            if (seconds == 00)
             {
-                //Jogo Finalizado
+                minutes--;
+                secondsBase = 60;
+                seconds = 60;
+            }
+            if (seconds >= 10)
+            {
+                timerTxt.text = "0" + minutes + ":" + seconds;
+            }
+            else
+            {
+                timerTxt.text = "0" + minutes + ":0" + seconds;
+                if (minutes == 0 && seconds == 0)
+                {
+                    //Jogo Finalizado
+                }
             }
         }
     }

@@ -20,9 +20,11 @@ public class Player : MonoBehaviour
 
     //Referencias privadas
     Rigidbody2D body;
+    GameController gc;
     // Start is called before the first frame update
     void Start()
     {
+        gc = FindObjectOfType(typeof(GameController)) as GameController;
         body = GetComponent<Rigidbody2D>();
         currentLife = lifeMax;
         lifeBar = lifeBarPos.gameObject.GetComponent<LifeBar>();
@@ -32,9 +34,12 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Moviment();
-        Shoot();
-        lifeBarPos.position = transform.position;//Posicionamento da barra de vida
+        if (GameController.gamePhase.Equals(GamePhases.Game))
+        {
+            Moviment();
+            Shoot();
+            lifeBarPos.position = transform.position;//Posicionamento da barra de vida
+        }
     }
     void Moviment()
     {
@@ -72,14 +77,14 @@ public class Player : MonoBehaviour
         int state = (int)((currentLife * 10) / lifeMax);
         if(state > 7)
         {
-            spriteShip.sprite = shipCondition[2];
+            spriteShip.sprite = shipCondition[0];
         } else if (state > 4)
         {
             spriteShip.sprite = shipCondition[1];
         } else if (state > 2)
         {
-            spriteShip.sprite = shipCondition[0];
-        } 
+            spriteShip.sprite = shipCondition[2];
+        }
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -87,5 +92,15 @@ public class Player : MonoBehaviour
         currentLife = lifeBar.UpdateBar(2,currentLife, lifeMax);
         Instantiate(explosion, collision.transform.position, collision.transform.rotation);
         SpriteController();
+        if (currentLife == 0)
+        {
+            Die();
+        }
+    }
+    void Die()
+    {
+        GameController.gamePhase = GamePhases.GameOver;
+        spriteShip.sprite = shipCondition[3];
+        gc.GameOverMenu();
     }
 }
