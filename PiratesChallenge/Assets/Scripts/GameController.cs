@@ -12,6 +12,7 @@ public class GameController : MonoBehaviour
     public static GamePhases gamePhase;
     [Header("Database")]
     public GameObject gameOverPanel;
+    public GameObject explosion, fire;
     
     // Start is called before the first frame update
     void Start()
