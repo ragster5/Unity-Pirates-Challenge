@@ -10,8 +10,9 @@ public enum GamePhases
 public class GameController : MonoBehaviour
 {
     public static GamePhases gamePhase;
-    [Header("References")]
+    [Header("Database")]
     public GameObject gameOverPanel;
+    
     // Start is called before the first frame update
     void Start()
     {
