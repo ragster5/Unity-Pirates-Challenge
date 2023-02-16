@@ -19,7 +19,7 @@ public abstract class Enemy : MonoBehaviour
     protected IAStates iaState = IAStates.Idle;
 
 
-    Vector2 target;
+    protected Vector3 target;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
