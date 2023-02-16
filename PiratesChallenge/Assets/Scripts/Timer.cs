@@ -6,11 +6,13 @@ using TMPro;
 public class Timer : MonoBehaviour
 {
     TextMeshProUGUI timerTxt;
+    GameController gc;
     float secondsBase;
     int seconds, minutes;
     // Start is called before the first frame update
     void Start()
     {
+        gc = FindObjectOfType(typeof(GameController)) as GameController;
         seconds = 00;
         secondsBase = 00;
         if (PlayerPrefs.HasKey("MatchDuration"))
@@ -47,7 +49,7 @@ public class Timer : MonoBehaviour
                 timerTxt.text = "0" + minutes + ":0" + seconds;
                 if (minutes == 0 && seconds == 0)
                 {
-                    //Jogo Finalizado
+                    gc.EndGame();
                 }
             }
         }

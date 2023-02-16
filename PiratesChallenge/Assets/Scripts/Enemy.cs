@@ -8,13 +8,17 @@ public enum IAStates
 public abstract class Enemy : MonoBehaviour
 {
     public float lifeMax, speed;
+    public int points;
     protected float currentLife;
 
     [Header("References")]
     public LifeBar lifeBar;
     public Transform player;
     public GameObject explosion;
+    public GameController gc;
     protected IAStates iaState = IAStates.Idle;
+
+
     Vector2 target;
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -24,6 +28,7 @@ public abstract class Enemy : MonoBehaviour
         if(currentLife <= 0)
         {
             Instantiate(explosion, transform.position, transform.rotation);
+            gc.UpdateScore(points);
             Destroy(transform.parent.gameObject);
         }
     }
