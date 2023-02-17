@@ -86,6 +86,14 @@ public class Player : MonoBehaviour
             Die();
         }
     }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Instantiate(gc.explosion, collision.transform.position, collision.transform.rotation);
+    }
+    public void TakeDamage(float damage)
+    {
+        currentLife = lifeBar.UpdateBar(damage, currentLife, lifeMax);
+    }
     void Die()
     {
         GameController.gamePhase = GamePhases.GameOver;

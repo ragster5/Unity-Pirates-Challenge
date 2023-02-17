@@ -7,7 +7,7 @@ public enum IAStates
 }
 public abstract class Enemy : MonoBehaviour
 {
-    public float lifeMax, speed;
+    public float lifeMax, speed, damage;
     public int points;
     protected float currentLife;
 
@@ -32,6 +32,7 @@ public abstract class Enemy : MonoBehaviour
             Destroy(transform.parent.gameObject);
         }
     }
+    
     protected void Chase()
     {
         transform.position = Vector2.Lerp(transform.position, player.position, speed/10 * Time.deltaTime);

@@ -23,9 +23,8 @@ public class Chaser : Enemy
         {
             case IAStates.Chase:
                 //Chase();
-                
-                transform.position = Vector2.Lerp(transform.position, target, speed / 10 * Time.deltaTime);
-                body.rotation = Mathf.Lerp(body.rotation, angle, 5 * Time.deltaTime);
+                    body.rotation = Mathf.Lerp(body.rotation, angle, 2 * Time.deltaTime);
+                    transform.position = Vector2.Lerp(transform.position, target, speed / 10 * Time.deltaTime);
                 break;
             case IAStates.Obstacle:
                 //Obstacle();
@@ -34,6 +33,7 @@ public class Chaser : Enemy
                 break;
             case IAStates.Idle:
                 //Vision();
+                Rotate();
                 RaycastHit2D ray = Physics2D.Linecast(transform.position, player.position, 7);
                 if (!ray.collider.CompareTag("Player"))
                 {
@@ -41,7 +41,7 @@ public class Chaser : Enemy
                 }
                 else
                 {
-                    Invoke("ChangeRoute", 2);
+                    Invoke("ChangeRoute", 1);
                     target = player.position;
                     iaState = IAStates.Chase;
                 }
@@ -49,14 +49,29 @@ public class Chaser : Enemy
             case IAStates.Moving:
                 //Moving();
                 break;
+            case IAStates.Rotate:
+
+                break;
             default:
                 break;
         }
     }
     void ChangeRoute()
     {
-        Vector2 lookDir = player.position - transform.position;
-        angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg - 90f;
         iaState = IAStates.Idle;
+    }
+    void Rotate()
+    {
+        Vector2 lookDir = player.position - transform.position;
+        angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg - 90;
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            Instantiate(explosion, transform.position, transform.rotation);
+            collision.gameObject.GetComponent<Player>().TakeDamage(damage);
+            Destroy(gameObject);
+        }
     }
 }

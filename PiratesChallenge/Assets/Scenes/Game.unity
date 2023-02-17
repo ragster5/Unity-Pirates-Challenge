@@ -7792,6 +7792,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8008516812580048404, guid: 01cc379e85b76fa4f89f314491f5c468, type: 3}
+      propertyPath: m_Size.x
+      value: 0.86067665
+      objectReference: {fileID: 0}
+    - target: {fileID: 8008516812580048404, guid: 01cc379e85b76fa4f89f314491f5c468, type: 3}
+      propertyPath: m_Size.y
+      value: 2.1842484
+      objectReference: {fileID: 0}
+    - target: {fileID: 8008516812580048404, guid: 01cc379e85b76fa4f89f314491f5c468, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.017415464
+      objectReference: {fileID: 0}
+    - target: {fileID: 8008516812580048404, guid: 01cc379e85b76fa4f89f314491f5c468, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.017415345
+      objectReference: {fileID: 0}
+    - target: {fileID: 8008516812580048407, guid: 01cc379e85b76fa4f89f314491f5c468, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8617594624750648214, guid: 01cc379e85b76fa4f89f314491f5c468, type: 3}
       propertyPath: m_Name
       value: Chaser
@@ -7860,6 +7880,10 @@ PrefabInstance:
       propertyPath: gc
       value: 
       objectReference: {fileID: 606937342}
+    - target: {fileID: 8617594625297269187, guid: 01cc379e85b76fa4f89f314491f5c468, type: 3}
+      propertyPath: damage
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 8617594625297269187, guid: 01cc379e85b76fa4f89f314491f5c468, type: 3}
       propertyPath: player
       value: 
