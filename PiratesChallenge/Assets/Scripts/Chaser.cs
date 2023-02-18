@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Chaser : Enemy
 {
+    /*
     Rigidbody2D body;
     float angle;
     // Start is called before the first frame update
@@ -74,4 +75,5 @@ public class Chaser : Enemy
             Destroy(gameObject);
         }
     }
+    */
 }

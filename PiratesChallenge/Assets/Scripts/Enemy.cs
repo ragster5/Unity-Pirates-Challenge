@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 public enum IAStates
 {
-    Chase, Obstacle, Shoot, Rotate, Idle, Moving
+    Deciding, Moving, Arrive
 }
 public abstract class Enemy : MonoBehaviour
 {
@@ -14,20 +14,19 @@ public abstract class Enemy : MonoBehaviour
     [Header("References")]
     public LifeBar lifeBar;
     public Transform player;
-    public GameObject explosion;
     public GameController gc;
-    protected IAStates iaState = IAStates.Idle;
+    protected IAStates iaState = IAStates.Deciding;
 
 
     protected Vector3 target;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Instantiate(explosion, collision.transform.position, collision.transform.rotation);
+        Instantiate(gc.explosion, collision.transform.position, collision.transform.rotation);
         currentLife = lifeBar.UpdateBar(collision.GetComponent<Bullet>().damage, currentLife, lifeMax);
         if(currentLife <= 0)
         {
-            Instantiate(explosion, transform.position, transform.rotation);
+            Instantiate(gc.explosion, transform.position, transform.rotation);
             gc.UpdateScore(points);
             Destroy(transform.parent.gameObject);
         }
@@ -42,10 +41,10 @@ public abstract class Enemy : MonoBehaviour
         RaycastHit2D ray = Physics2D.Linecast(transform.position, player.position, 7);
         if (!ray.collider.CompareTag("Player"))
         {
-            iaState = IAStates.Obstacle;
+           // iaState = IAStates.Obstacle;
         } else
         {
-            iaState = IAStates.Chase;
+            //iaState = IAStates.Chase;
         }
     }
     protected void Obstacle()
@@ -62,7 +61,7 @@ public abstract class Enemy : MonoBehaviour
         transform.position = Vector2.Lerp(transform.position, target, speed / 10 * Time.deltaTime);
         if (transform.position.Equals(target))
         {
-            iaState = IAStates.Obstacle;
+           //    iaState = IAStates.Obstacle;
         }
         Vision();
     }
