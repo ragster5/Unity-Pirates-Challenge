@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 public enum IAStates
 {
-    Deciding, Moving, Arrive
+    Wait, Chasing, Moving
 }
 public abstract class Enemy : MonoBehaviour
 {
@@ -17,7 +17,9 @@ public abstract class Enemy : MonoBehaviour
     public Transform player;
     public GameController gc;
     protected NavMeshAgent agent;
-    protected IAStates iaState = IAStates.Deciding;
+    protected IAStates iaState = IAStates.Wait;
+
+    protected Rigidbody2D body;
 
 
     protected Vector3 target;
@@ -33,5 +35,44 @@ public abstract class Enemy : MonoBehaviour
             Destroy(transform.parent.gameObject);
         }
     }
-    
+    void StopChasing()
+    {
+        print("Parei");
+        iaState = IAStates.Wait;
+    }
+    protected void Rotate(Vector3 target)
+    {
+        Vector2 lookDir = target - transform.position;
+        float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg - 90;
+        body.rotation = angle;
+    }
+    public Vector3 RandomNavmeshLocation(float radius)
+    {
+        Vector3 randomDirection = Random.insideUnitSphere * radius;
+        randomDirection += transform.position;
+        NavMeshHit hit;
+        Vector3 finalPosition = Vector3.zero;
+        if (NavMesh.SamplePosition(randomDirection, out hit, radius, 1))
+        {
+            finalPosition = hit.position;
+        }
+        return finalPosition;
+    }
+    protected IEnumerator ReachDestiny()
+    {
+        yield return new WaitForSeconds(1);
+        iaState = IAStates.Wait;
+    }
+    private void OnBecameVisible()
+    {
+        iaState = IAStates.Chasing;
+        CancelInvoke();
+        StopAllCoroutines();
+        
+    }
+    private void OnBecameInvisible()
+    {
+        Invoke("StopChasing", 3);
+    }
+
 }

@@ -10,41 +10,62 @@ public class Shooter : Enemy
     public Transform frontal;
 
     [Header("Modifiers")]
+    public float shotRate;
 
-
-    float nextShotTime;
     bool chasing;
-    float angle;
+    float timerToShot;
     // Start is called before the first frame update
     void Start()
     {
+        body = GetComponent<Rigidbody2D>();
         agent = GetComponent<NavMeshAgent>();
         agent.updateRotation = false;
         agent.updateUpAxis = false;
         currentLife = lifeMax;
         currentLife = lifeBar.UpdateBar(0, currentLife, lifeMax);
-        iaState = IAStates.Deciding;
+        iaState = IAStates.Wait;
     }
 
     // Update is called once per frame
     void Update()
     {
+        print(iaState);
         lifeBar.transform.position = transform.position;
         switch (iaState)
         {
-            case IAStates.Deciding:
+            case IAStates.Wait:
+                    agent.SetDestination(RandomNavmeshLocation(6));
+                    iaState = IAStates.Moving;
                 
+                break;
+            case IAStates.Chasing:
+                Rotate(player.position);
+                agent.SetDestination(player.position);
+                if(agent.remainingDistance < agent.stoppingDistance + 2)
+                {
+                    Shoot();
+                } else
+                {
+                    timerToShot = 0;
+                }
                 break;
             case IAStates.Moving:
-                
-                break;
-            case IAStates.Arrive:
-                
+                Rotate(target);
+                if(agent.remainingDistance <= agent.stoppingDistance)
+                {
+                    StartCoroutine("ReachDestiny");
+                }
                 break;
         }
     }
     void Shoot()
     {
-
+        timerToShot += Time.deltaTime;
+        if(timerToShot >= shotRate)
+        {
+            Instantiate(bullet, frontal.position, frontal.rotation);
+            timerToShot = 0;
+        }
     }
+
 }

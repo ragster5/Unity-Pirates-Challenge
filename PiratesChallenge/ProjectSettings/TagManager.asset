@@ -45,6 +45,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Obstacles
+    uniqueID: 1021989279
+    locked: 0
   - name: Characters
     uniqueID: 470403205
     locked: 0
