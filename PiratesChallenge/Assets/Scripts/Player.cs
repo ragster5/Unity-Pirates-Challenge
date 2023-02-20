@@ -93,6 +93,8 @@ public class Player : MonoBehaviour
     }
     void Die()
     {
+        Instantiate(gc.explosion, transform.position, transform.rotation);
+        SoundEffectsController.PlaySound(SoundsList.Explosion);
         GameController.gamePhase = GamePhases.GameOver;
         body.velocity = Vector2.zero;
         SpriteController();

@@ -34,11 +34,18 @@ public class Timer : MonoBehaviour
         {
             secondsBase -= Time.deltaTime;
             seconds = (int)secondsBase;
-            if (seconds == 00)
+            if (seconds == 0)
             {
-                minutes--;
-                secondsBase = 60;
-                seconds = 60;
+                if (minutes == 0)
+                {
+                    gc.EndGame();
+                }
+                else
+                {
+                    minutes--;
+                    secondsBase = 60;
+                    seconds = 60;
+                }
             }
             if (seconds >= 10)
             {
@@ -47,11 +54,8 @@ public class Timer : MonoBehaviour
             else
             {
                 timerTxt.text = "0" + minutes + ":0" + seconds;
-                if (minutes == 0 && seconds == 0)
-                {
-                    gc.EndGame();
-                }
             }
+            
         }
     }
 }
