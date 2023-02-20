@@ -79,6 +79,7 @@ public class Player : MonoBehaviour
     {
         TakeDamage(collision.GetComponent<Bullet>().damage);
         Instantiate(gc.explosion, collision.transform.position, collision.transform.rotation);
+        SoundEffectsController.PlaySound(SoundsList.Explosion);
     }
     
     public void TakeDamage(float damage)

@@ -11,6 +11,7 @@ public class Bullet : MonoBehaviour
 
     private void Start()
     {
+        SoundEffectsController.PlaySound(SoundsList.Shoot);
         body = GetComponent<Rigidbody2D>();
         body.velocity = (speed * transform.up);
     }

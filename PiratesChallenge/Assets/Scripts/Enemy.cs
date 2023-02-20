@@ -27,6 +27,7 @@ public abstract class Enemy : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Instantiate(gc.explosion, collision.transform.position, collision.transform.rotation);
+        SoundEffectsController.PlaySound(SoundsList.Explosion);
         TakeDamage(collision.GetComponent<Bullet>().damage);
     }
     public void TakeDamage(float damage)
@@ -38,6 +39,7 @@ public abstract class Enemy : MonoBehaviour
             currentLife = 0;
             SpriteController();
             Instantiate(gc.explosion, transform.position, transform.rotation);
+            SoundEffectsController.PlaySound(SoundsList.Explosion);
             gc.UpdateScore(points);
             body.velocity = Vector2.zero;
             Destroy(lifeBar.gameObject);
