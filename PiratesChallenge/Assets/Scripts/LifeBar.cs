@@ -10,7 +10,9 @@ public class LifeBar : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        barMaxSize = transform.localScale.x;
+        print(bar.localScale);
+        barMaxSize = bar.localScale.x;
+        
     }
 
     // Update is called once per frame

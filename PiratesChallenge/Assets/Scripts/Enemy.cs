@@ -8,36 +8,52 @@ public enum IAStates
 }
 public abstract class Enemy : MonoBehaviour
 {
+    [Header("Modifiers")]
     public float lifeMax, speed, damage;
     public int points;
     protected float currentLife;
 
     [Header("References")]
     public LifeBar lifeBar;
-    public Transform player;
-    public GameController gc;
-    protected NavMeshAgent agent;
-    protected IAStates iaState = IAStates.Wait;
+    public SpriteController spriteShip, spriteBigFlag, spriteSmallFlag;
 
     protected Rigidbody2D body;
-
-
+    protected NavMeshAgent agent;
+    protected IAStates iaState = IAStates.Wait;
+    protected Transform player;
+    protected GameController gc;
     protected Vector3 target;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Instantiate(gc.explosion, collision.transform.position, collision.transform.rotation);
-        currentLife = lifeBar.UpdateBar(collision.GetComponent<Bullet>().damage, currentLife, lifeMax);
-        if(currentLife <= 0)
+        TakeDamage(collision.GetComponent<Bullet>().damage);
+    }
+    public void TakeDamage(float damage)
+    {
+        currentLife = lifeBar.UpdateBar(damage, currentLife, lifeMax);
+        SpriteController();
+        if (currentLife <= 0)
         {
+            currentLife = 0;
+            SpriteController();
             Instantiate(gc.explosion, transform.position, transform.rotation);
             gc.UpdateScore(points);
-            Destroy(transform.parent.gameObject);
+            body.velocity = Vector2.zero;
+            Destroy(lifeBar.gameObject);
+            Destroy(this);
         }
+    }
+    void SpriteController()
+    {
+        spriteShip.ChangeSprite(currentLife, lifeMax);
+        Instantiate(gc.fire, spriteBigFlag.transform.position, spriteBigFlag.transform.rotation);
+        spriteBigFlag.ChangeSprite(currentLife, lifeMax);
+        Instantiate(gc.fire, spriteSmallFlag.transform.position, spriteSmallFlag.transform.rotation);
+        spriteSmallFlag.ChangeSprite(currentLife, lifeMax);
     }
     void StopChasing()
     {
-        print("Parei");
         iaState = IAStates.Wait;
     }
     protected void Rotate(Vector3 target)

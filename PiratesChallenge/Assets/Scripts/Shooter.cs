@@ -17,45 +17,50 @@ public class Shooter : Enemy
     // Start is called before the first frame update
     void Start()
     {
-        body = GetComponent<Rigidbody2D>();
         agent = GetComponent<NavMeshAgent>();
         agent.updateRotation = false;
         agent.updateUpAxis = false;
+        player = GameObject.FindGameObjectWithTag("Player").transform;
+        gc = FindObjectOfType(typeof(GameController)) as GameController;
+        body = GetComponent<Rigidbody2D>();
         currentLife = lifeMax;
-        currentLife = lifeBar.UpdateBar(0, currentLife, lifeMax);
+        //currentLife = lifeBar.UpdateBar(0, currentLife, lifeMax);
         iaState = IAStates.Wait;
     }
 
     // Update is called once per frame
     void Update()
     {
-        print(iaState);
         lifeBar.transform.position = transform.position;
-        switch (iaState)
+        if (GameController.gamePhase.Equals(GamePhases.Game))
         {
-            case IAStates.Wait:
+            switch (iaState)
+            {
+                case IAStates.Wait:
                     agent.SetDestination(RandomNavmeshLocation(6));
                     iaState = IAStates.Moving;
-                
-                break;
-            case IAStates.Chasing:
-                Rotate(player.position);
-                agent.SetDestination(player.position);
-                if(agent.remainingDistance < agent.stoppingDistance + 2)
-                {
-                    Shoot();
-                } else
-                {
-                    timerToShot = 0;
-                }
-                break;
-            case IAStates.Moving:
-                Rotate(target);
-                if(agent.remainingDistance <= agent.stoppingDistance)
-                {
-                    StartCoroutine("ReachDestiny");
-                }
-                break;
+
+                    break;
+                case IAStates.Chasing:
+                    Rotate(player.position);
+                    agent.SetDestination(player.position);
+                    if (agent.remainingDistance < agent.stoppingDistance + 2)
+                    {
+                        Shoot();
+                    }
+                    else
+                    {
+                        timerToShot = 0;
+                    }
+                    break;
+                case IAStates.Moving:
+                    Rotate(target);
+                    if (agent.remainingDistance <= agent.stoppingDistance)
+                    {
+                        StartCoroutine("ReachDestiny");
+                    }
+                    break;
+            }
         }
     }
     void Shoot()

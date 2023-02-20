@@ -18,7 +18,7 @@ public class SpawnController : MonoBehaviour
             timer = 3;
         }
         spawns = GetComponentsInChildren<Spawn>();
-        InvokeRepeating("Spawn", 0, timer);
+        InvokeRepeating("Spawn", 1, timer);
     }
     void Spawn()
     {

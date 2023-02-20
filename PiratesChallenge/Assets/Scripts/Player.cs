@@ -77,23 +77,23 @@ public class Player : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        //currentLife = lifeBar.UpdateBar(collision.GetComponent<Bullet>().damage,currentLife, lifeMax);
-        currentLife = lifeBar.UpdateBar(2,currentLife, lifeMax);
+        TakeDamage(collision.GetComponent<Bullet>().damage);
         Instantiate(gc.explosion, collision.transform.position, collision.transform.rotation);
-        SpriteController();
-        if (currentLife == 0)
-        {
-            Die();
-        }
     }
     
     public void TakeDamage(float damage)
     {
         currentLife = lifeBar.UpdateBar(damage, currentLife, lifeMax);
+        SpriteController();
+        if (currentLife <= 0)
+        {
+            Die();
+        }
     }
     void Die()
     {
         GameController.gamePhase = GamePhases.GameOver;
+        body.velocity = Vector2.zero;
         SpriteController();
         gc.GameOverMenu();
     }
