@@ -10,8 +10,8 @@ public class Player : MonoBehaviour
     public SpriteController spriteShip, spriteBigFlag, spriteSmallFlag;
     [Header("Modifiers")]
     public float moveSpeed = 5f;
-    public float rotationSpeed = 5f, lifeMax = 10f;
-    float rotate = 0, currentLife;
+    public float rotationSpeed = 5f, lifeMax = 10f, frontalShootRate, sideShootRate;
+    float rotate = 0, currentLife, timerToShoot;
     LifeBar lifeBar;
 
     //Referencias privadas
@@ -55,16 +55,19 @@ public class Player : MonoBehaviour
     }
     void Shoot()
     {
-        if (Input.GetButtonDown("Fire1"))//Tiro Frontal
+        timerToShoot += Time.deltaTime;
+        if (Input.GetButtonDown("Fire1") && timerToShoot > frontalShootRate)//Tiro Frontal
         {
             Instantiate(bullet, frontalGun.position, transform.rotation);
+            timerToShoot = 0;
         }
-        if (Input.GetButtonDown("Fire2"))//Tiro Lateral
+        if (Input.GetButtonDown("Fire2") && timerToShoot > sideShootRate)//Tiro Lateral
         {
             for (int i = 0; i < sideGun.Length; i++)
             {
                 Instantiate(bullet, sideGun[i].position, sideGun[i].rotation);
             }
+            timerToShoot = 0;
         }
     }
     void SpriteController()

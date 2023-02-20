@@ -23,5 +23,9 @@ public class SpawnController : MonoBehaviour
     void Spawn()
     {
         spawns[Random.Range(0, spawns.Length)].SpawnRandomEnemy(enemy[Random.Range(0, enemy.Length)]);
+        if (!GameController.gamePhase.Equals(GamePhases.Game))
+        {
+            CancelInvoke();
+        }
     }
 }

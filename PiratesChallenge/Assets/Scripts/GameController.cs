@@ -13,7 +13,7 @@ public class GameController : MonoBehaviour
     public static GamePhases gamePhase;
     [Header("Database")]
     public GameObject gameOverPanel;
-    public GameObject explosion, fire;
+    public GameObject explosion, fire, introductionPanel, spawnController;
     public TextMeshProUGUI scoreTxt;
 
     int scoreNumber;
@@ -22,8 +22,9 @@ public class GameController : MonoBehaviour
     void Start()
     {
         scoreNumber = 0;
-        gamePhase = GamePhases.Game;
+        gamePhase = GamePhases.Introduction;
         scoreTxt.text = "Score: " + scoreNumber;
+        introductionPanel.SetActive(true);
     }
 
     // Update is called once per frame
@@ -52,5 +53,9 @@ public class GameController : MonoBehaviour
     public void EndGame()
     {
         SceneManager.LoadScene("End");
+    }
+    public void PlayGame()
+    {
+        spawnController.SetActive(true);
     }
 }

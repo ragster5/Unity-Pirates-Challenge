@@ -6,7 +6,7 @@ using TMPro;
 public class Title : MonoBehaviour
 {
     public TextMeshProUGUI matchDurationTxt, spawnTimeTxt;
-    int matchDuration = 2, spawnTime = 5;
+    int matchDuration = 2, spawnTime = 3;
     private void Start()
     {
         PlayerPrefs.SetInt("MatchDuration", matchDuration);
