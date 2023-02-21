@@ -51,6 +51,7 @@ public class Chaser : Enemy
         if (collision.gameObject.CompareTag("Player"))
         {
             Instantiate(gc.explosion, transform.position, transform.rotation);
+            SoundEffectsController.PlaySound(SoundsList.Explosion);
             collision.gameObject.GetComponent<Player>().TakeDamage(damage);
             Destroy(transform.parent.gameObject);
         }

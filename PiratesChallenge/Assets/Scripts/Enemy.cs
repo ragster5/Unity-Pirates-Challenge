@@ -9,7 +9,8 @@ public enum IAStates
 public abstract class Enemy : MonoBehaviour
 {
     [Header("Modifiers")]
-    public float lifeMax, speed, damage;
+    public float lifeMax;
+    public float damage;
     public int points;
     protected float currentLife;
 

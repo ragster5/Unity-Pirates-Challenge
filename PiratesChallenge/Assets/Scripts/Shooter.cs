@@ -9,7 +9,7 @@ public class Shooter : Enemy
     public GameObject bullet;
     public Transform frontal;
 
-    [Header("Modifiers")]
+    [Header("Modifiers - Child")]
     public float shotRate;
 
     bool chasing;

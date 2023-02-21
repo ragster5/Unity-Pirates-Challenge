@@ -751,8 +751,8 @@ RectTransform:
   m_GameObject: {fileID: 145493486}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1.2, y: 1.2, z: 1.2}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1227935115}
   m_Father: {fileID: 450742736}
@@ -1437,7 +1437,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
@@ -2170,8 +2170,8 @@ RectTransform:
   m_GameObject: {fileID: 775753089}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1159322032}
   m_Father: {fileID: 450742736}
@@ -113914,7 +113914,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 450742736}
   m_RootOrder: 0
@@ -113922,7 +113922,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: -25}
-  m_SizeDelta: {x: 100, y: 50}
+  m_SizeDelta: {x: 315.26, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1056124882
 MonoBehaviour:
@@ -113971,8 +113971,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 18
-  m_fontSizeBase: 18
+  m_fontSize: 30
+  m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -114198,10 +114198,10 @@ MonoBehaviour:
   spriteBigFlag: {fileID: 506854704}
   spriteSmallFlag: {fileID: 1058273972}
   moveSpeed: 5
-  rotationSpeed: 8
-  lifeMax: 10
-  frontalShootRate: 0
-  sideShootRate: 0
+  rotationSpeed: 40
+  lifeMax: 20
+  frontalShootRate: 0.1
+  sideShootRate: 0.3
 --- !u!50 &1096881843
 Rigidbody2D:
   serializedVersion: 4
@@ -114406,8 +114406,8 @@ RectTransform:
   m_GameObject: {fileID: 1177385835}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1.2, y: 1.2, z: 1.2}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 405557968}
   m_Father: {fileID: 450742736}
@@ -114415,7 +114415,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 20.64}
+  m_AnchoredPosition: {x: 0, y: 28}
   m_SizeDelta: {x: 100, y: 41.29}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1177385837

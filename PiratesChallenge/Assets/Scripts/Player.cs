@@ -32,9 +32,15 @@ public class Player : MonoBehaviour
     {
         if (GameController.gamePhase.Equals(GamePhases.Game))
         {
-            Moviment();
             Shoot();
             lifeBarPos.position = transform.position;//Posicionamento da barra de vida
+        }
+    }
+    private void FixedUpdate()
+    {
+        if (GameController.gamePhase.Equals(GamePhases.Game))
+        {
+            Moviment();
         }
     }
     void Moviment()
